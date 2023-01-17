@@ -16,6 +16,7 @@ import { cutText } from "../../shared/сut-text";
 import { Icon } from "../icon/icon";
 
 import css from "./card.module.scss";
+import { ROUTES } from "../../constants/routes";
 
 interface IArticleCardProps {
 	img: string;
@@ -53,7 +54,7 @@ export const ArticleCard: FC<IArticleCardProps> = ({
 					/>
 				</Typography>
 			</CardContent>
-			<Link component={RouterLink} to={""} className={css.link}>
+			<Link component={RouterLink} to={ROUTES.page} className={css.link}>
 				<Typography component="div">Read more</Typography>
 				<Icon type="arrowRight" />
 			</Link>

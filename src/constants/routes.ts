@@ -1,3 +1,5 @@
-export const ROUTES ={
-    home: '/'
-}
+export const ROUTES = {
+	home: "/",
+	page: "page",
+	noMatch: "*",
+};
