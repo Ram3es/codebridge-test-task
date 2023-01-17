@@ -1,11 +1,11 @@
 import { InputAdornment, TextField, Typography } from "@mui/material";
 
-import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import { Icon } from "../icon/icon";
 import css from "./search-bar.module.scss";
-import { getAllArticles } from "../../services/articles.service";
 import { searchBySentences } from "../../shared/searchBySentences";
 import { useDebounce } from "../../shared/hooks/useDebounce";
+import { useAppSelector } from "../../shared/hooks/redux";
 
 interface ISearchBarProps {
 	setSearchWWords: (value: string[]) => void;
@@ -16,8 +16,8 @@ export const SearchBar: FC<ISearchBarProps> = ({
 	setSearchWWords,
 	filteredArticles,
 }) => {
-	const [articles, setArticles] = useState<Article[]>([]);
 	const [searchValue, setValues] = useState<string[]>([]);
+	const { articles } = useAppSelector((state) => state.articles);
 	const debounce = useDebounce(500);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,18 +31,9 @@ export const SearchBar: FC<ISearchBarProps> = ({
 		[searchValue, articles]
 	);
 
-	const getArticles = useCallback(async () => {
-		const { data } = await getAllArticles();
-		setArticles(data);
-	}, []);
-
 	useEffect(() => {
 		filteredArticles(formated);
 	}, [formated, filteredArticles]);
-
-	useEffect(() => {
-		getArticles();
-	}, [getArticles]);
 
 	return (
 		<>

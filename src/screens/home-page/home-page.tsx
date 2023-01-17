@@ -8,6 +8,8 @@ export const HomePage = () => {
 	const [articles, setArticles] = useState<Article[]>([]);
 	const [searchWords, setWords] = useState<string[]>([]);
 
+	console.log("sdsdf");
+
 	const handleSearchBar = (value: string[]) => setWords(value);
 	const filteredArticles = (articles: Article[]) => setArticles(articles);
 
