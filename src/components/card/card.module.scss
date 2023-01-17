@@ -1,0 +1,38 @@
+@import "../../styles/variables.scss";
+
+.card {
+	max-width: 400px;
+	border-radius: 5px;
+	box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.05);
+	border: 1px solid $border-color;
+}
+.date {
+	display: flex;
+	align-items: center;
+	opacity: 0.6;
+	margin-bottom: 16px;
+
+	p {
+		font-size: 14px;
+		margin-left: 8px;
+	}
+}
+.summary {
+	min-height: 100px;
+}
+.link {
+	display: flex;
+	width: fit-content;
+	text-decoration: none;
+	align-items: center;
+	transition: 0.3s ease-out;
+	margin: 0 0 16px 16px;
+	&:hover {
+		opacity: 0.6;
+	}
+
+	div {
+		font-weight: 700;
+		margin-right: 8px;
+	}
+}
