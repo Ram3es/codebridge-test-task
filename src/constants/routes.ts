@@ -1,5 +1,5 @@
 export const ROUTES = {
 	home: "/",
-	page: "page",
+	page: "/:id",
 	noMatch: "*",
 };

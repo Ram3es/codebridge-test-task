@@ -1,3 +1,7 @@
+import { FC } from "react";
+import { format } from "date-fns";
+import { Link as RouterLink } from "react-router-dom";
+import Highlighter from "react-highlight-words";
 import {
 	Box,
 	Card,
@@ -6,19 +10,16 @@ import {
 	Link,
 	Typography,
 } from "@mui/material";
-import { format } from "date-fns";
-import { FC } from "react";
-import { Link as RouterLink } from "react-router-dom";
-import Highlighter from "react-highlight-words";
-
-import { DATE_OPTIONS } from "../../constants/date-format";
-import { cutText } from "../../shared/сut-text";
-import { Icon } from "../icon/icon";
 
 import css from "./card.module.scss";
+
+import { Icon } from "../icon/icon";
+import { cutText } from "../../shared/сut-text";
+import { DATE_OPTIONS } from "../../constants/date-format";
 import { ROUTES } from "../../constants/routes";
 
 interface IArticleCardProps {
+	id: number;
 	img: string;
 	title: string;
 	summary: string;
@@ -27,10 +28,11 @@ interface IArticleCardProps {
 }
 
 export const ArticleCard: FC<IArticleCardProps> = ({
+	id,
 	img,
+	date,
 	title,
 	summary,
-	date,
 	searchWords,
 }) => {
 	const formatedSummary = cutText(summary, 100);
@@ -54,7 +56,11 @@ export const ArticleCard: FC<IArticleCardProps> = ({
 					/>
 				</Typography>
 			</CardContent>
-			<Link component={RouterLink} to={ROUTES.page} className={css.link}>
+			<Link
+				component={RouterLink}
+				to={`${ROUTES.home}${id}`}
+				className={css.link}
+			>
 				<Typography component="div">Read more</Typography>
 				<Icon type="arrowRight" />
 			</Link>

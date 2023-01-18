@@ -2,8 +2,10 @@ import { FC, useEffect } from "react";
 import { Route, Routes } from "react-router";
 import { BrowserRouter as Router, Navigate } from "react-router-dom";
 import { ROUTES } from "../constants/routes";
-import { ArticlePage } from "../screens/article-page";
+
 import { HomePage } from "../screens/home-page";
+import { ArticlePage } from "../screens/article-page";
+
 import { useAppDispatch } from "../shared/hooks/redux";
 import { fetchArticles } from "../store/action-creators";
 
