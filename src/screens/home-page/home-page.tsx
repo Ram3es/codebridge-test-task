@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 
 import { Box, Divider, Grid, Typography } from "@mui/material";
 import { ArticleCard } from "../../components/card";
-import { SearchBar } from "../../components/serach-bar";
+import { SearchBar } from "../../components/search-bar";
 import css from "./home-page.module.scss";
 
 export const HomePage = () => {

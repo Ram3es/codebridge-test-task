@@ -1,10 +1,10 @@
 import { cutText } from "./сut-text";
 
-export const searchBySentences = (data: Article[], serach: string[]) => {
+export const searchBySentences = (data: Article[], search: string[]) => {
 	const secondaryOrder: Article[] = [];
 
 	const regex = new RegExp(
-		serach.map((word) => `(?=.*${word})`).join("|"),
+		search.map((word) => `(?=.*${word})`).join("|"),
 		"ig"
 	);
 
