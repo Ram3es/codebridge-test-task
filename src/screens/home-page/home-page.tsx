@@ -1,5 +1,6 @@
+import { useCallback, useState } from "react";
+
 import { Box, Divider, Grid, Typography } from "@mui/material";
-import { useState } from "react";
 import { ArticleCard } from "../../components/card";
 import { SearchBar } from "../../components/serach-bar";
 import css from "./home-page.module.scss";
@@ -8,10 +9,12 @@ export const HomePage = () => {
 	const [articles, setArticles] = useState<Article[]>([]);
 	const [searchWords, setWords] = useState<string[]>([]);
 
-	console.log("sdsdf");
+	const handleSearchBar = useCallback((value: string[]) => setWords(value), []);
 
-	const handleSearchBar = (value: string[]) => setWords(value);
-	const filteredArticles = (articles: Article[]) => setArticles(articles);
+	const filteredArticles = useCallback(
+		(articles: Article[]) => setArticles(articles),
+		[]
+	);
 
 	return (
 		<Box className={css.wrapper}>
@@ -27,6 +30,7 @@ export const HomePage = () => {
 				{articles?.map((article) => (
 					<Grid key={article.id} item xs={12} sm={6} md={4} lg={3}>
 						<ArticleCard
+							id={article.id}
 							summary={article.summary}
 							img={article.imageUrl}
 							title={article.newsSite}

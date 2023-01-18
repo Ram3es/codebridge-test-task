@@ -2,6 +2,10 @@
 
 .wrapper {
 	padding: 75px;
+	background: $background;
+	@media (max-width: 600px) {
+		padding: 30px 15px;
+	}
 }
 
 .divider {

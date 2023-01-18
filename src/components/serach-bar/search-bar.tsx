@@ -1,14 +1,16 @@
+import React, { FC, useEffect, useMemo, useState } from "react";
 import { InputAdornment, TextField, Typography } from "@mui/material";
 
-import React, { FC, useEffect, useMemo, useState } from "react";
-import { Icon } from "../icon/icon";
 import css from "./search-bar.module.scss";
-import { searchBySentences } from "../../shared/searchBySentences";
-import { useDebounce } from "../../shared/hooks/useDebounce";
+
+import { Icon } from "../icon/icon";
+
 import { useAppSelector } from "../../shared/hooks/redux";
+import { useDebounce } from "../../shared/hooks/useDebounce";
+import { searchBySentences } from "../../shared/searchBySentences";
 
 interface ISearchBarProps {
-	setSearchWWords: (value: string[]) => void;
+	setSearchWWords?: (value: string[]) => void;
 	filteredArticles: (articles: Article[]) => void;
 }
 
@@ -23,13 +25,15 @@ export const SearchBar: FC<ISearchBarProps> = ({
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const searchValue = e.target.value.split(" ").filter((item) => !!item);
 
-		debounce(() => [setValues(searchValue), setSearchWWords(searchValue)]);
+		debounce(() => [setValues(searchValue), setSearchWWords?.(searchValue)]);
 	};
 
 	const formated = useMemo(
 		() => searchBySentences(articles, searchValue),
 		[searchValue, articles]
 	);
+
+	// console.log(formated, "formated");
 
 	useEffect(() => {
 		filteredArticles(formated);
